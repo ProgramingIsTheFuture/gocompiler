@@ -1,0 +1,4 @@
+(executable
+ (public_name gocompiler)
+ (name main)
+ (libraries gocompiler))

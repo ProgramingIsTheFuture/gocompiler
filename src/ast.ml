@@ -13,7 +13,6 @@ type expr =
 and stmt =
   (* Define variables with name, optional typ and a value *)
   | Let of string * typ option * expr
-  (* Name | Params with name type | Return type *)
-  | Func of string * (string * typ) list * typ
-
+  (* Name | Params with name type | Return type | Statements for the body function *)
+  | Func of string * (string * typ) list * typ * stmt list
 

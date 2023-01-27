@@ -2,3 +2,10 @@
  (public_name gocompiler)
  (name main)
  (libraries gocompiler))
+
+(ocamllex
+ (modules lexer))
+
+(menhir
+ (modules parser))
+

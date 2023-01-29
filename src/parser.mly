@@ -52,11 +52,12 @@ stmt:
       let t = typ_of_str t in
       Let (n, Some t, e)
     }
-  | FUNC n = NAME p = params t = NAME? RBRACE s = list(stmt) LBRACE 
+  | FUNC n = NAME p = params t = NAME? LBRACE s = list(stmt) RBRACE 
     { 
       let t = match t with | Some t -> Some (typ_of_str t) | None -> None in
       Func (n, p, t, s) 
     }
+  | e = expr {Let ("_", None, e)}
 
 code: s = list(stmt) EOF { s } 
 

@@ -3,7 +3,7 @@
 }
 
 rule token = parse
-  | ['\n' ' ' '\t'] { newline lexbuf; token lexbuf }
+  | ['\n' ' ' '\t'] { token lexbuf }
   | '+' { ADD }
   | '=' { EQUAL }
   | '{' { LBRACE }
@@ -15,7 +15,7 @@ rule token = parse
   | "var" { LET }
   | "func" { FUNC }
   | ['0'-'9']+ as s { VALUE (int_of_string s) }
-  | ['A'-'Z' 'a'-'z'] as name
+  | ['A'-'Z' 'a'-'z']+ as name
     { NAME name }
   | eof { EOF }
-  | _ as c { raise (Error.InvalidKwd (Format.sprintf "Char %c is invalid" c)) }
+  | _ as c { failwith (Format.sprintf "Char %c is invalid" c) }

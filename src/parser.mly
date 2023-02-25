@@ -54,7 +54,7 @@ stmt:
     }
   | FUNC n = NAME p = params t = NAME? LBRACE s = list(stmt) RBRACE 
     { 
-      let t = match t with | Some t -> Some (typ_of_str t) | None -> None in
+      let t = match t with | Some t -> typ_of_str t | None -> TVoid in
       Func (n, p, t, s) 
     }
   | e = expr {Let ("_", None, e)}
